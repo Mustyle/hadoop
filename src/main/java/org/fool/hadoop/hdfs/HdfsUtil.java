@@ -111,7 +111,7 @@ public class HdfsUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
-		// to upload a file to hdfs
+		// download a file from hdfs
 		Configuration conf = new Configuration();
 		conf.set("fs.defaultFS", "hdfs://hadoop-001:9000/");
 
