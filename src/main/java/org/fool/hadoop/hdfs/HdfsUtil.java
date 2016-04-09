@@ -29,10 +29,10 @@ public class HdfsUtil {
 		Configuration conf = new Configuration();
 
 		// 也可以在代码中对conf中的配置信息进行手动设置，会覆盖掉配置文件中的读取的值
-		conf.set("fs.defaultFS", "hdfs://hadoop-001:9000/");
+		conf.set("fs.defaultFS", "hdfs://hadoop-0000:9000/");
 
 		// 根据配置信息，去获取一个具体文件系统的客户端操作实例对象
-		fs = FileSystem.get(new URI("hdfs://hadoop-001:9000/"), conf, "hadoop");
+		fs = FileSystem.get(new URI("hdfs://hadoop-0000:9000/"), conf, "hadoop");
 	}
 
 	/**
@@ -41,11 +41,11 @@ public class HdfsUtil {
 	@Test
 	public void upload() throws Exception {
 		Configuration conf = new Configuration();
-		conf.set("fs.defaultFS", "hdfs://hadoop-001:9000/");
+		conf.set("fs.defaultFS", "hdfs://hadoop-0000:9000/");
 
 		FileSystem fs = FileSystem.get(conf);
 
-		FSDataOutputStream os = fs.create(new Path("hdfs://hadoop-001:9000/aa/pom.xml"));
+		FSDataOutputStream os = fs.create(new Path("hdfs://hadoop-0000:9000/aa/pom.xml"));
 
 		BufferedInputStream is = new BufferedInputStream(new FileInputStream(new File("pom.xml")));
 
@@ -57,7 +57,7 @@ public class HdfsUtil {
 	 */
 	@Test
 	public void upload2() throws Exception {
-		fs.copyFromLocalFile(new Path("pom.xml"), new Path("hdfs://hadoop-001:9000/aa/pom.xml"));
+		fs.copyFromLocalFile(new Path("pom.xml"), new Path("hdfs://hadoop-0000:9000/aa/pom.xml"));
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class HdfsUtil {
 	 */
 	@Test
 	public void download() throws Exception {
-		fs.copyToLocalFile(false, new Path("hdfs://hadoop-001:9000/aa/pom.xml"), new Path("C:/pom.xml"), true);
+		fs.copyToLocalFile(false, new Path("hdfs://hadoop-0000:9000/aa/pom.xml"), new Path("C:/pom.xml"), true);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class HdfsUtil {
 	public static void main(String[] args) throws Exception {
 		// download a file from hdfs
 		Configuration conf = new Configuration();
-		conf.set("fs.defaultFS", "hdfs://hadoop-001:9000/");
+		conf.set("fs.defaultFS", "hdfs://hadoop-0000:9000/");
 
 		FileSystem fs = FileSystem.get(conf);
 
